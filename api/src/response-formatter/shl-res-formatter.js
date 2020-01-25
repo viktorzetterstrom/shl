@@ -1,9 +1,8 @@
-const teamInfo = require('./team-info.json');
+const teamNames = require('./team-names');
 
 const standings = apiResponse => apiResponse.map(team => ({
   ...team,
-  logo: teamInfo[team.team.id].logo,
-  name: teamInfo[team.team.id].name,
+  name: teamNames[team.team.id],
 }));
 
 const games = apiResponse => apiResponse
@@ -18,47 +17,20 @@ const games = apiResponse => apiResponse
     twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
     const gameDate = new Date(game.start_date_time);
     return twoWeeksAgo < gameDate && gameDate < oneWeekAway;
-  })
-  .map(game => ({
-    ...game,
-    home_team_logo: teamInfo[game.home_team_code].logo,
-    away_team_logo: teamInfo[game.away_team_code].logo,
-  }));
-
-const goalies = apiResponse => apiResponse
-  .map(goalie => ({
-    ...goalie,
-    info: {
-      ...goalie.info,
-      team: {
-        ...goalie.info.team,
-        logo: teamInfo[goalie.info.team.id].logo,
-        name: teamInfo[goalie.info.team.id].name,
-      },
-    },
-  }));
-
-const players = apiResponse => apiResponse
-  .map(player => ({
-    ...player,
-    info: {
-      ...player.info,
-      team: {
-        ...player.info.team,
-        logo: teamInfo[player.info.team.id].logo,
-        name: teamInfo[player.info.team.id].name,
-      },
-    },
-  }));
+  });
 
 const winstreaks = (apiResponse) => {
   const playedGames = apiResponse.filter(game => new Date() > new Date(game.start_date_time));
-  const teamWinstreaks = { ...teamInfo };
-  Object.keys(teamInfo).forEach((teamCode) => {
-    teamWinstreaks[teamCode].streaks = {
-      both: 0,
-      home: 0,
-      away: 0,
+  const teamWinstreaks = {}
+  Object.entries(teamNames).forEach(([teamId, teamName]) => {
+    teamWinstreaks[teamId] = {
+      id: teamId,
+      name: teamName,
+      streaks: {
+        both: 0,
+        home: 0,
+        away: 0,
+      },
     };
   });
 
@@ -97,13 +69,14 @@ const winstreaks = (apiResponse) => {
       };
     }
   });
-  return Object.values(teamWinstreaks).sort((a, b) => b.streaks.both - a.streaks.both);
+  return Object.values(teamWinstreaks)
+    .sort((a, b) => b.streaks.away - a.streaks.away)
+    .sort((a, b) => b.streaks.home - a.streaks.home)
+    .sort((a, b) => b.streaks.both - a.streaks.both);
 };
 
 module.exports = {
   standings,
   games,
-  goalies,
-  players,
   winstreaks,
 };

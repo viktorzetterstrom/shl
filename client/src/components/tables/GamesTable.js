@@ -26,8 +26,8 @@ const GamesTableRow = ({ game }) => (
   <tr>
     <td>{formatGameDate(game.start_date_time)}</td>
     <td>{formatGameTime(game.start_date_time)}</td>
-    <td><TeamLogo src={game.home_team_logo} name={game.home_team_name} /></td>
-    <td><TeamLogo src={game.away_team_logo} name={game.away_team_name} /> </td>
+    <td><TeamLogo id={game.home_team_code} name={game.home_team_name} /></td>
+    <td><TeamLogo id={game.away_team_code} name={game.away_team_name} /> </td>
     <td>{displayResult(game)}</td>
   </tr>
 );

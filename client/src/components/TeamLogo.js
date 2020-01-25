@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default ({ src, name}) => <img src={src} alt={`${name} logotyp`} />
+export default ({ id, name}) => <img src={`/img/${id}-30.png`} alt={`${name} logo`} />

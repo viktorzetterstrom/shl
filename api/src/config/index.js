@@ -4,5 +4,5 @@ module.exports = {
   redisPort: process.env.REDIS_PORT,
   shlId: process.env.SHL_ID,
   shlSecret: process.env.SHL_SECRET,
-  cacheLifeSpan: 600,
+  cacheLifeSpan: 5,
 };

@@ -40,4 +40,4 @@ class ShlConnection {
   }
 }
 
-module.exports.ShlConnection = ShlConnection;
+module.exports = ShlConnection;

@@ -1,5 +1,3 @@
-
-
 class ShlClient {
   constructor(connection) {
     this.connection = connection;
@@ -37,4 +35,4 @@ class ShlClient {
   }
 }
 
-module.exports.ShlClient = ShlClient;
+module.exports = ShlClient;

@@ -25,7 +25,7 @@ const formatSvsperc = svsperc => `${svsperc.toFixed(2)}%`;
 
 const GoaliesTableRow = ({ goalie }) => (
   <tr>
-    <td><TeamLogo src={goalie.info.team.logo} name={goalie.info.team.name} /></td>
+    <td><TeamLogo id={goalie.info.team.id} name={goalie.info.team.name} /></td>
     <td>{goalie.info.number}</td>
     <td>{`${goalie.info.first_name} ${goalie.info.last_name}`}</td>
     <td>{goalie.gpi}</td>

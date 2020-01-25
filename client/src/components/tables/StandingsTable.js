@@ -18,7 +18,7 @@ const StandingsTableHead = () => (
 
 const StandingsTableRow = ({ team }) => (
   <tr>
-    <td><TeamLogo src={team.logo} name={team.name} /></td>
+    <td><TeamLogo id={team.team.id} name={team.name} /></td>
     <td>{team.name}</td>
     <td>{team.gp}</td>
     <td>{team.diff}</td>

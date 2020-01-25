@@ -21,7 +21,7 @@ const PlayersTableHead = () => (
 
 const PlayersTableRow = ({ player }) => (
   <tr>
-    <td><TeamLogo src={player.info.team.logo} name={player.info.team.name} /></td>
+    <td><TeamLogo id={player.info.team.id} name={player.info.team.name} /></td>
     <td>{player.info.number}</td>
     <td>{`${player.info.first_name} ${player.info.last_name}`}</td>
     <td>{player.gp}</td>
