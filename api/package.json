@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "description": "API serving information from the SHL open API",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "jest",
     "start": "node index.js",
-    "start-dev": "NODE_ENV=development nodemon index.js"
+    "dev": "NODE_ENV=development nodemon index.js"
   },
   "author": "Viktor Zetterström",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "node-fetch": "^2.6.0",
