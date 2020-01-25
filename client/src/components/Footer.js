@@ -20,7 +20,14 @@ const FooterWrapper = styled.div`
 export default function Footer({ theme }) {
   return (
     <FooterWrapper {...theme}>
-      Data provided by the <a href="http://doc.openapi.shl.se/" rel="noopener noreferrer" target="_blank">open SHL api.</a>
+      Data provided by the{' '}
+      <a
+        href="http://doc.openapi.shl.se/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        open SHL api.
+      </a>
     </FooterWrapper>
   );
 }

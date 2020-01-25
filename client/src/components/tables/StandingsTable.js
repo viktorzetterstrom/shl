@@ -5,20 +5,22 @@ import TableContainer from '../TableContainer';
 import Spinner from '../Spinner';
 
 const StandingsTableHead = () => (
-    <thead>
-      <tr>
-        <th></th>
-        <th>Team</th>
-        <th>GP</th>
-        <th>+/-</th>
-        <th>Points</th>
-      </tr>
-    </thead>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Team</th>
+      <th>GP</th>
+      <th>+/-</th>
+      <th>Points</th>
+    </tr>
+  </thead>
 );
 
 const StandingsTableRow = ({ team }) => (
   <tr>
-    <td><TeamLogo id={team.team.id} name={team.name} /></td>
+    <td>
+      <TeamLogo id={team.team.id} name={team.name} />
+    </td>
     <td>{team.name}</td>
     <td>{team.gp}</td>
     <td>{team.diff}</td>
@@ -30,9 +32,9 @@ const StandingsTable = ({ standings, theme }) => (
   <TableContainer {...theme}>
     <StandingsTableHead />
     <tbody>
-      {
-        standings.map((team, i) => <StandingsTableRow key={i} team={team} theme={theme} />)
-      }
+      {standings.map((team, i) => (
+        <StandingsTableRow key={i} team={team} theme={theme} />
+      ))}
     </tbody>
   </TableContainer>
 );
@@ -40,12 +42,15 @@ const StandingsTable = ({ standings, theme }) => (
 export default ({ theme }) => {
   const [standings, setStandings] = useState({ loading: true });
   useEffect(() => {
-    shlService.standings()
+    shlService
+      .standings()
       .then(res => setStandings(res.data))
       .catch(err => console.error(`Error fetching games: ${err}`));
   }, []);
 
-  return !standings.loading
-    ? <StandingsTable standings={ standings } theme={ theme } />
-    : <Spinner theme={ theme }/>
-}
+  return !standings.loading ? (
+    <StandingsTable standings={standings} theme={theme} />
+  ) : (
+    <Spinner theme={theme} />
+  );
+};

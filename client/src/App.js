@@ -4,8 +4,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
-} from "react-router-dom";
+  Redirect,
+} from 'react-router-dom';
 import AppContainer from './components/AppContainer';
 import Header from './components/Header';
 import StandingsTable from './components/tables/StandingsTable';
@@ -20,23 +20,23 @@ const activeTheme = lightTheme;
 function App() {
   return (
     <Router>
-    <AppContainer>
-      <Header theme={ activeTheme } />
+      <AppContainer>
+        <Header theme={activeTheme} />
         <Switch>
           <Route path="/standings">
-            <StandingsTable theme={ activeTheme } />
+            <StandingsTable theme={activeTheme} />
           </Route>
           <Route path="/games">
-            <GamesTable theme={ activeTheme } />
+            <GamesTable theme={activeTheme} />
           </Route>
           <Route path="/statistics/goalies">
-            <GoaliesTable theme={ activeTheme } />
+            <GoaliesTable theme={activeTheme} />
           </Route>
           <Route path="/statistics/players">
-            <PlayersTable theme={ activeTheme } />
+            <PlayersTable theme={activeTheme} />
           </Route>
           <Route path="/statistics/winstreaks">
-            <WinstreaksTable theme={ activeTheme } />
+            <WinstreaksTable theme={activeTheme} />
           </Route>
           <Route path="/statistics">
             <Redirect to="/statistics/goalies" />
@@ -45,8 +45,8 @@ function App() {
             <Redirect to="/standings" />
           </Route>
         </Switch>
-      <Footer />
-    </AppContainer>
+        <Footer />
+      </AppContainer>
     </Router>
   );
 }

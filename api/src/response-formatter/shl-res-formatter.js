@@ -1,27 +1,31 @@
 const teamNames = require('./team-names');
 
-const standings = apiResponse => apiResponse.map(team => ({
-  ...team,
-  name: teamNames[team.team.id],
-}));
+const standings = apiResponse =>
+  apiResponse.map(team => ({
+    ...team,
+    name: teamNames[team.team.id],
+  }));
 
-const games = apiResponse => apiResponse
-  .map(game => ({
-    ...game,
-    start_date_time: new Date(game.start_date_time),
-  }))
-  .filter((game) => {
-    const oneWeekAway = new Date();
-    oneWeekAway.setDate(oneWeekAway.getDate() + 7);
-    const twoWeeksAgo = new Date();
-    twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
-    const gameDate = new Date(game.start_date_time);
-    return twoWeeksAgo < gameDate && gameDate < oneWeekAway;
-  });
+const games = apiResponse =>
+  apiResponse
+    .map(game => ({
+      ...game,
+      start_date_time: new Date(game.start_date_time),
+    }))
+    .filter(game => {
+      const oneWeekAway = new Date();
+      oneWeekAway.setDate(oneWeekAway.getDate() + 7);
+      const twoWeeksAgo = new Date();
+      twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+      const gameDate = new Date(game.start_date_time);
+      return twoWeeksAgo < gameDate && gameDate < oneWeekAway;
+    });
 
-const winstreaks = (apiResponse) => {
-  const playedGames = apiResponse.filter(game => new Date() > new Date(game.start_date_time));
-  const teamWinstreaks = {}
+const winstreaks = apiResponse => {
+  const playedGames = apiResponse.filter(
+    game => new Date() > new Date(game.start_date_time)
+  );
+  const teamWinstreaks = {};
   Object.entries(teamNames).forEach(([teamId, teamName]) => {
     teamWinstreaks[teamId] = {
       id: teamId,
@@ -37,7 +41,7 @@ const winstreaks = (apiResponse) => {
   const hasLostHome = {};
   const hasLostAway = {};
 
-  playedGames.forEach((game) => {
+  playedGames.forEach(game => {
     const homeCode = game.home_team_code;
     const awayCode = game.away_team_code;
     const homeResult = game.home_team_result;
@@ -48,11 +52,12 @@ const winstreaks = (apiResponse) => {
 
       teamWinstreaks[homeCode].streaks = {
         ...teamWinstreaks[homeCode].streaks,
-        both: !hasLostHome[homeCode] && !hasLostAway[homeCode]
-          ? teamWinstreaks[homeCode].streaks.both += 1
-          : teamWinstreaks[homeCode].streaks.both,
+        both:
+          !hasLostHome[homeCode] && !hasLostAway[homeCode]
+            ? (teamWinstreaks[homeCode].streaks.both += 1)
+            : teamWinstreaks[homeCode].streaks.both,
         home: !hasLostHome[homeCode]
-          ? teamWinstreaks[homeCode].streaks.home += 1
+          ? (teamWinstreaks[homeCode].streaks.home += 1)
           : teamWinstreaks[homeCode].streaks.home,
       };
     } else {
@@ -60,11 +65,12 @@ const winstreaks = (apiResponse) => {
 
       teamWinstreaks[awayCode].streaks = {
         ...teamWinstreaks[awayCode].streaks,
-        both: !hasLostHome[awayCode] && !hasLostAway[awayCode]
-          ? teamWinstreaks[awayCode].streaks.both += 1
-          : teamWinstreaks[awayCode].streaks.both,
+        both:
+          !hasLostHome[awayCode] && !hasLostAway[awayCode]
+            ? (teamWinstreaks[awayCode].streaks.both += 1)
+            : teamWinstreaks[awayCode].streaks.both,
         away: !hasLostAway[awayCode]
-          ? teamWinstreaks[awayCode].streaks.away += 1
+          ? (teamWinstreaks[awayCode].streaks.away += 1)
           : teamWinstreaks[awayCode].streaks.away,
       };
     }

@@ -17,7 +17,7 @@ const SpinnerPart = styled.div`
   width: 100px;
   height: 100px;
   border: 20px solid rgba(0, 0, 0, 0);
-  border-top: 20px solid ${ props => props.theme.primary };
+  border-top: 20px solid ${props => props.theme.primary};
   border-radius: 50%;
   animation: ${rotate} ${props => props.theme.speed} linear infinite;
 `;
@@ -25,9 +25,9 @@ const SpinnerPart = styled.div`
 export default function Spinner({ theme }) {
   return (
     <SpinnerContainer>
-      <SpinnerPart theme={{...theme, speed: "1s"}} />
-      <SpinnerPart theme={{...theme, speed: "1.5s"}} />
-      <SpinnerPart theme={{...theme, speed: "3s"}}/>
+      <SpinnerPart theme={{ ...theme, speed: '1s' }} />
+      <SpinnerPart theme={{ ...theme, speed: '1.5s' }} />
+      <SpinnerPart theme={{ ...theme, speed: '3s' }} />
     </SpinnerContainer>
-  )
+  );
 }

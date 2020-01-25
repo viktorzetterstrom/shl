@@ -9,10 +9,15 @@ class ShlClient {
       games: () => this.connection.get(`${base}/games`),
       game: gameId => this.connection.get(`${base}/games/${gameId}`),
       statistics: {
-        goalkeepers: () => this.connection.get(`${base}/statistics/goalkeepers?sort=savesPercent`),
-        players: () => this.connection.get(`${base}/statistics/players?sort=points`),
+        goalkeepers: () =>
+          this.connection.get(
+            `${base}/statistics/goalkeepers?sort=savesPercent`
+          ),
+        players: () =>
+          this.connection.get(`${base}/statistics/players?sort=points`),
         teams: {
-          standings: () => this.connection.get(`${base}/statistics/teams/standings`),
+          standings: () =>
+            this.connection.get(`${base}/statistics/teams/standings`),
         },
       },
     };

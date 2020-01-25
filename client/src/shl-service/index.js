@@ -4,4 +4,4 @@ export default {
   goalies: () => fetch('/api/goalies').then(res => res.json()),
   players: () => fetch('/api/players').then(res => res.json()),
   winstreaks: () => fetch('/api/winstreaks').then(res => res.json()),
-}
+};

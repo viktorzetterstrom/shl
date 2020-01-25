@@ -27,7 +27,9 @@ class ShlConnection {
 
     this.accessToken = response.access_token;
     this.expires = new Date();
-    this.expires = this.expires.setSeconds(this.expires.getSeconds() + response.expires_in);
+    this.expires = this.expires.setSeconds(
+      this.expires.getSeconds() + response.expires_in
+    );
   }
 
   async get(queryString) {

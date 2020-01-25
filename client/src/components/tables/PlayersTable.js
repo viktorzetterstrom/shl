@@ -5,23 +5,25 @@ import TableContainer from '../TableContainer';
 import Spinner from '../Spinner';
 
 const PlayersTableHead = () => (
-    <thead>
-      <tr>
-        <th></th>
-        <th>Nr</th>
-        <th>Name</th>
-        <th>GP</th>
-        <th>+/-</th>
-        <th>A</th>
-        <th>G</th>
-        <th>TP</th>
-      </tr>
-    </thead>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nr</th>
+      <th>Name</th>
+      <th>GP</th>
+      <th>+/-</th>
+      <th>A</th>
+      <th>G</th>
+      <th>TP</th>
+    </tr>
+  </thead>
 );
 
 const PlayersTableRow = ({ player }) => (
   <tr>
-    <td><TeamLogo id={player.info.team.id} name={player.info.team.name} /></td>
+    <td>
+      <TeamLogo id={player.info.team.id} name={player.info.team.name} />
+    </td>
     <td>{player.info.number}</td>
     <td>{`${player.info.first_name} ${player.info.last_name}`}</td>
     <td>{player.gp}</td>
@@ -36,9 +38,9 @@ const PlayersTable = ({ players, theme }) => (
   <TableContainer {...theme}>
     <PlayersTableHead />
     <tbody>
-      {
-        players.map((player, i) => <PlayersTableRow key={i} player={player} theme={theme} />)
-      }
+      {players.map((player, i) => (
+        <PlayersTableRow key={i} player={player} theme={theme} />
+      ))}
     </tbody>
   </TableContainer>
 );
@@ -46,12 +48,15 @@ const PlayersTable = ({ players, theme }) => (
 export default ({ theme }) => {
   const [players, setPlayers] = useState({ loading: true });
   useEffect(() => {
-    shlService.players()
+    shlService
+      .players()
       .then(res => setPlayers(res.data))
       .catch(err => console.error(`Error fetching games: ${err}`));
   }, []);
 
-  return !players.loading
-    ? <PlayersTable players={ players } theme={ theme } />
-    : <Spinner theme={ theme }/>
-}
+  return !players.loading ? (
+    <PlayersTable players={players} theme={theme} />
+  ) : (
+    <Spinner theme={theme} />
+  );
+};
