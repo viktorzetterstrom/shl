@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t viktorzetterstrom/client-test -f ./client/Dockerfile.dev ./client
+  - docker build -t viktorzetterstrom/api-test -f ./api/Dockerfile.dev ./api
+
+script:
+  - docker run -e CI=true viktorzetterstrom/client-test npm test
+  - docker run viktorzetterstrom/api-test npm test
+
+after_success:
+  - docker build -t viktorzetterstrom/shl-client ./client
+  - docker build -t viktorzetterstrom/shl-api ./api
+  - docker build -t viktorzetterstrom/shl-proxy ./proxy
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push viktorzetterstrom/shl-client
+  - docker push viktorzetterstrom/shl-api
+  - docker push viktorzetterstrom/shl-proxy
