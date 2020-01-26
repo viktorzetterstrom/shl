@@ -1,9 +1,12 @@
 const teamNames = require('./team-names');
 
 const standings = apiResponse =>
-  apiResponse.map(team => ({
-    ...team,
-    name: teamNames[team.team.id],
+  apiResponse.map(position => ({
+    ...position,
+    team: {
+      ...position.team,
+      name: teamNames[position.team.id],
+    },
   }));
 
 const games = apiResponse =>

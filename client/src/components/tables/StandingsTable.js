@@ -16,15 +16,15 @@ const StandingsTableHead = () => (
   </thead>
 );
 
-const StandingsTableRow = ({ team }) => (
+const StandingsTableRow = ({ position }) => (
   <tr>
     <td>
-      <TeamLogo id={team.team.id} name={team.name} />
+      <TeamLogo id={position.team.id} name={position.team.name} />
     </td>
-    <td>{team.name}</td>
-    <td>{team.gp}</td>
-    <td>{team.diff}</td>
-    <td>{team.points}</td>
+    <td>{position.team.name}</td>
+    <td>{position.gp}</td>
+    <td>{position.diff}</td>
+    <td>{position.points}</td>
   </tr>
 );
 
@@ -32,8 +32,8 @@ const StandingsTable = ({ standings, theme }) => (
   <TableContainer {...theme}>
     <StandingsTableHead />
     <tbody>
-      {standings.map((team, i) => (
-        <StandingsTableRow key={i} team={team} theme={theme} />
+      {standings.map((position, i) => (
+        <StandingsTableRow key={i} position={position} theme={theme} />
       ))}
     </tbody>
   </TableContainer>
