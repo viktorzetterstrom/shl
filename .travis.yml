@@ -18,3 +18,15 @@ after_success:
   - docker push viktorzetterstrom/shl-client
   - docker push viktorzetterstrom/shl-api
   - docker push viktorzetterstrom/shl-proxy
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-north-1
+  app: shl
+  env: Shl-env
+  bucket_name: elasticbeanstalk-eu-north-1-302963688785
+  bucket_path: shl
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
