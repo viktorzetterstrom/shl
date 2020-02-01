@@ -6,4 +6,4 @@ React app that displays the current SHL-standings, utilizing the [SHL open API](
 
 Currently the app displays the current SHL standings and some statistics regarding players and teams.
 
-An old version is up and running on [shl.zetterstrom.dev](https://shl.zetterstrom.dev). This is a new version in progress which will feature a real CI/CD pipeline as well as other improvements.
+Visit the site at: [shl.zetterstrom.dev](https://shl.zetterstrom.dev). 
