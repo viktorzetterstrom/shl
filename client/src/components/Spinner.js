@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const rotate = keyframes`
@@ -22,12 +22,20 @@ const SpinnerPart = styled.div`
   animation: ${rotate} ${props => props.theme.speed} linear infinite;
 `;
 
-export default function Spinner({ theme }) {
-  return (
+export default ({ theme }) => {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const delay = setTimeout(() => setShow(true), 500);
+    return () => clearTimeout(delay);
+  });
+
+  return show ? (
     <SpinnerContainer>
       <SpinnerPart theme={{ ...theme, speed: '1s' }} />
       <SpinnerPart theme={{ ...theme, speed: '1.5s' }} />
       <SpinnerPart theme={{ ...theme, speed: '3s' }} />
     </SpinnerContainer>
+  ) : (
+    <></>
   );
-}
+};
