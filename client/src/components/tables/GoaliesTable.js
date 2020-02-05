@@ -10,7 +10,6 @@ const GoaliesTableHead = () => (
       <th></th>
       <th>Nr</th>
       <th>Name</th>
-      <th>GP</th>
       <th>W</th>
       <th>T</th>
       <th>L</th>
@@ -30,7 +29,6 @@ const GoaliesTableRow = ({ goalie }) => (
     </td>
     <td>{goalie.info.number}</td>
     <td>{`${goalie.info.first_name} ${goalie.info.last_name}`}</td>
-    <td>{goalie.gpi}</td>
     <td>{goalie.w}</td>
     <td>{goalie.t}</td>
     <td>{goalie.l}</td>
