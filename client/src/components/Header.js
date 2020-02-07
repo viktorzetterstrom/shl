@@ -26,31 +26,43 @@ const HeaderWrapper = styled.div`
   padding: 5px 0;
 `;
 
+const StyledH1 = styled.h1`
+  font-size: 40px;
+  margin: 0;
+`;
+
+const StyledH2 = styled.h2`
+  font-size: 24px;
+  margin: 0;
+`;
+
 export default function Headers({ theme }) {
   return (
     <>
-      <HeaderWrapper {...theme}>SHL 19/20</HeaderWrapper>
+      <HeaderWrapper {...theme}>
+        <StyledH1>SHL 19/20</StyledH1>
+      </HeaderWrapper>
       <HeaderWrapper {...theme}>
         <HeaderLink {...theme} to="/standings">
-          Standings
+          <StyledH2>Standings</StyledH2>
         </HeaderLink>
         <HeaderLink {...theme} to="/games">
-          Games
+          <StyledH2>Games</StyledH2>
         </HeaderLink>
         <HeaderLink {...theme} to="/statistics">
-          Stats
+          <StyledH2>Stats</StyledH2>
         </HeaderLink>
       </HeaderWrapper>
       <Route path="/statistics">
         <HeaderWrapper {...theme}>
           <HeaderLink {...theme} to="/statistics/goalies">
-            Goalies
+            <StyledH2>Goalies</StyledH2>
           </HeaderLink>
           <HeaderLink {...theme} to="/statistics/players">
-            Players
+            <StyledH2>Players</StyledH2>
           </HeaderLink>
           <HeaderLink {...theme} to="/statistics/winstreaks">
-            Winstreaks
+            <StyledH2>Winstreaks</StyledH2>
           </HeaderLink>
         </HeaderWrapper>
       </Route>
