@@ -19,7 +19,6 @@ const HeaderLink = styled(NavLink)`
 const HeaderWrapper = styled.div`
   color: ${props => props.secondary};
   background-color: ${props => props.primary};
-  font-size: 24px;
   font-weight: 500;
   display: flex;
   justify-content: space-around;

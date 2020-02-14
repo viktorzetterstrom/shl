@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Roboto';
-  src: local('Roboto'), url(./fonts/Roboto/Roboto.ttf) format('woff');
+  src: local('Roboto'), url(./fonts/Roboto/Roboto-Medium.ttf) format('woff');
 }
 @font-face {
   font-family: 'Anton';
