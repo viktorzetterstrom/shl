@@ -2,6 +2,10 @@ sudo: required
 services:
   - docker
 
+branches:
+  only:
+    - master
+
 before_install:
   - docker build -t viktorzetterstrom/client-test -f ./client/Dockerfile.dev ./client
   - docker build -t viktorzetterstrom/api-test -f ./api/Dockerfile.dev ./api

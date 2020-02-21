@@ -1,0 +1,10 @@
+Create a secret:
+kubectl create secret generic <secret_name> --from-literal key=value
+
+type of secrets:
+  docker-registry, authentication with custom docker-registry
+  tls, https
+  generic, everything else
+
+--from-literal is used to pass the value with the command.
+
