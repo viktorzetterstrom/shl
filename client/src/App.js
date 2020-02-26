@@ -1,5 +1,5 @@
 import React from 'react';
-import { lightTheme } from './style/theme';
+import theme from './style/theme';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,7 +15,7 @@ import PlayersTable from './components/tables/PlayersTable';
 import WinstreaksTable from './components/tables/WinstreaksTable';
 import Footer from './components/Footer';
 
-const activeTheme = lightTheme;
+const activeTheme = theme;
 
 function App() {
   return (
