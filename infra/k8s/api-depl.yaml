@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shl-api-depl
+spec:
+  selector:
+    matchLabels:
+      app: shl-api
+  template:
+    metadata:
+      labels:
+        app: shl-api
+    spec:
+      containers:
+        - name: shl-api
+          image: viktorzetterstrom/shl-api
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: REDIS_HOST
+              value: shl-api-redis-srv
+            - name: REDIS_PORT
+              value: "6379"
+            - name: SHL_ID
+              valueFrom:
+                secretKeyRef:
+                  name: shl-secret
+                  key: SHL_ID
+            - name: SHL_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: shl-secret
+                  key: SHL_SECRET
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shl-api-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: shl-api
+  ports:
+    - port: 3000
+      targetPort: 3000
