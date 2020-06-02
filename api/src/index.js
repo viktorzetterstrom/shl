@@ -23,7 +23,7 @@ app.get('/standings', (_, res) =>
     return shlClient
       .season(2019)
       .statistics.teams.standings()
-      .then(apiResponse => {
+      .then((apiResponse) => {
         const formatedResponse = formatter.standings(apiResponse);
         redisClient.setex(
           'standings',
@@ -43,7 +43,7 @@ app.get('/games', (_, res) =>
     return shlClient
       .season(2019)
       .games()
-      .then(apiResponse => {
+      .then((apiResponse) => {
         const formatedResponse = formatter.games(apiResponse);
         redisClient.setex(
           'games',
@@ -64,7 +64,7 @@ app.get('/goalies', (_, res) =>
     return shlClient
       .season(2019)
       .statistics.goalkeepers()
-      .then(apiResponse => {
+      .then((apiResponse) => {
         redisClient.setex(
           'goalies',
           config.cacheLifeSpan,
@@ -75,15 +75,15 @@ app.get('/goalies', (_, res) =>
   })
 );
 
-app.get('/players', (_, res) =>
-  redisClient.get('players', (err, players) => {
+app.get('/skaters', (_, res) =>
+  redisClient.get('skaters', (err, players) => {
     if (err) return res.json({ error: err });
     if (players) res.json({ soure: 'cache', data: JSON.parse(players) });
 
     return shlClient
       .season(2019)
       .statistics.players()
-      .then(apiResponse => {
+      .then((apiResponse) => {
         redisClient.setex(
           'players',
           config.cacheLifeSpan,
@@ -103,7 +103,7 @@ app.get('/winstreaks', (req, res) =>
     return shlClient
       .season(2019)
       .games()
-      .then(apiResponse => {
+      .then((apiResponse) => {
         const formatedResponse = formatter.winstreaks(apiResponse);
         redisClient.setex(
           'winstreaks',

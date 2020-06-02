@@ -23,7 +23,7 @@ class ShlConnection {
         client_secret: this.secret,
         grant_type: 'client_credentials',
       }),
-    }).then(res => res.json());
+    }).then((res) => res.json());
 
     this.accessToken = response.access_token;
     this.expires = new Date();
@@ -38,7 +38,7 @@ class ShlConnection {
       headers: {
         authorization: `Bearer ${this.accessToken}`,
       },
-    }).then(res => res.json());
+    }).then((res) => res.json());
   }
 }
 
