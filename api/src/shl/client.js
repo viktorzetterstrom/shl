@@ -13,7 +13,7 @@ class ShlClient {
           this.connection.get(
             `${base}/statistics/goalkeepers?sort=savesPercent`
           ),
-        players: () =>
+        skaters: () =>
           this.connection.get(`${base}/statistics/players?sort=points`),
         teams: {
           standings: () =>

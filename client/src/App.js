@@ -11,7 +11,7 @@ import Header from './components/Header';
 import StandingsTable from './components/tables/StandingsTable';
 import GamesTable from './components/tables/GamesTable';
 import GoaliesTable from './components/tables/GoaliesTable';
-import PlayersTable from './components/tables/PlayersTable';
+import SkatersTable from './components/tables/SkatersTable';
 import WinstreaksTable from './components/tables/WinstreaksTable';
 import Footer from './components/Footer';
 
@@ -32,8 +32,8 @@ function App() {
           <Route path="/statistics/goalies">
             <GoaliesTable theme={activeTheme} />
           </Route>
-          <Route path="/statistics/players">
-            <PlayersTable theme={activeTheme} />
+          <Route path="/statistics/skaters">
+            <SkatersTable theme={activeTheme} />
           </Route>
           <Route path="/statistics/winstreaks">
             <WinstreaksTable theme={activeTheme} />

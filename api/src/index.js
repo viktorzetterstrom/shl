@@ -76,16 +76,16 @@ app.get('/goalies', (_, res) =>
 );
 
 app.get('/skaters', (_, res) =>
-  redisClient.get('skaters', (err, players) => {
+  redisClient.get('skaters', (err, skaters) => {
     if (err) return res.json({ error: err });
-    if (players) res.json({ soure: 'cache', data: JSON.parse(players) });
+    if (skaters) res.json({ soure: 'cache', data: JSON.parse(skaters) });
 
     return shlClient
       .season(2019)
-      .statistics.players()
+      .statistics.skaters()
       .then((apiResponse) => {
         redisClient.setex(
-          'players',
+          'skaters',
           config.cacheLifeSpan,
           JSON.stringify(apiResponse)
         );
