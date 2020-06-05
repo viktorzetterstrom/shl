@@ -38,9 +38,7 @@ export class ShlClient {
             ),
           winstreaks: async () =>
             formatWinstreaks(
-              await this.connection.get<GameResponse[]>(
-                `${base}/statistics/teams/standings`
-              )
+              await this.connection.get<GameResponse[]>(`${base}/games`)
             ),
         },
       },
