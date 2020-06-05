@@ -14,3 +14,7 @@ spec:
             backend:
               serviceName: shl-api-srv
               servicePort: 3000
+          - path: /(.*)
+            backend:
+              serviceName: shl-client-srv
+              servicePort: 3000
