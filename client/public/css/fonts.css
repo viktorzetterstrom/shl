@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Gotu";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/Gotu/Gotu-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/Source_Code_Pro/SourceCodePro-Regular.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/Raleway/Raleway-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway";
+  font-style: bold;
+  font-weight: 700;
+  src: url("../font/Raleway/Raleway-Bold.ttf") format("ttf");
+}
