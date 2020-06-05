@@ -1,35 +1,13 @@
-const teamNames = require("./team-names");
+import { GameResponse } from "../responses/game";
+import { TeamNames } from "./team-names";
 
-const standings = (apiResponse) =>
-  apiResponse.map((position) => ({
-    ...position,
-    team: {
-      ...position.team,
-      name: teamNames[position.team.id],
-    },
-  }));
-
-const games = (apiResponse) =>
-  apiResponse
-    .map((game) => ({
-      ...game,
-      start_date_time: new Date(game.start_date_time),
-    }))
-    .filter((game) => {
-      const oneWeekAway = new Date();
-      oneWeekAway.setDate(oneWeekAway.getDate() + 7);
-      const twoWeeksAgo = new Date();
-      twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
-      const gameDate = new Date(game.start_date_time);
-      return twoWeeksAgo < gameDate && gameDate < oneWeekAway;
-    });
-
-const winstreaks = (apiResponse) => {
+// TODO: Refactor correctly with typescript
+export const formatWinstreaks = (apiResponse: GameResponse[]) => {
   const playedGames = apiResponse.filter(
     (game) => new Date() > new Date(game.start_date_time)
   );
-  const teamWinstreaks = {};
-  Object.entries(teamNames).forEach(([teamId, teamName]) => {
+  const teamWinstreaks: any = {};
+  Object.entries(TeamNames).forEach(([teamId, teamName]) => {
     teamWinstreaks[teamId] = {
       id: teamId,
       name: teamName,
@@ -41,8 +19,8 @@ const winstreaks = (apiResponse) => {
     };
   });
 
-  const hasLostHome = {};
-  const hasLostAway = {};
+  const hasLostHome: any = {};
+  const hasLostAway: any = {};
 
   playedGames.forEach((game) => {
     const homeCode = game.home_team_code;
@@ -79,13 +57,7 @@ const winstreaks = (apiResponse) => {
     }
   });
   return Object.values(teamWinstreaks)
-    .sort((a, b) => b.streaks.away - a.streaks.away)
-    .sort((a, b) => b.streaks.home - a.streaks.home)
-    .sort((a, b) => b.streaks.both - a.streaks.both);
-};
-
-module.exports = {
-  standings,
-  games,
-  winstreaks,
+    .sort((a: any, b: any) => b.streaks.away - a.streaks.away)
+    .sort((a: any, b: any) => b.streaks.home - a.streaks.home)
+    .sort((a: any, b: any) => b.streaks.both - a.streaks.both);
 };

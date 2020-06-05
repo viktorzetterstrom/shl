@@ -1,4 +1,4 @@
-module.exports = {
+export const TeamNames = {
   FHC: "Frölunda",
   DIF: "Djurgården",
   BIF: "Brynäs",

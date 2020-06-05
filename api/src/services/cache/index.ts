@@ -2,18 +2,31 @@ import redis, { RedisClient } from "redis";
 
 class Cache {
   private client?: RedisClient;
-  private CACHE_LIFESPAN = 600;
+  private CACHE_LIFESPAN: number = 600;
+
+  public connected: boolean = false;
 
   constructor(private host: string, private port: number) {}
 
-  connect() {
-    this.client = redis.createClient({
-      port: this.port,
-      host: this.host,
+  async connect() {
+    return new Promise((resolve, reject) => {
+      try {
+        this.client = redis.createClient({
+          port: this.port,
+          host: this.host,
+        });
+
+        this.client.on("ready", () => {
+          this.connected = this.client!.connected;
+          resolve();
+        });
+      } catch (error) {
+        reject(error);
+      }
     });
   }
 
-  async get(key: string): Promise<string> {
+  async get(key: string): Promise<string | null> {
     return new Promise((resolve, reject) => {
       if (!this.client) {
         throw new Error("No redis connection");
@@ -32,6 +45,13 @@ class Cache {
       throw new Error("No redis connection");
     }
     this.client.setex(key, this.CACHE_LIFESPAN, input);
+  }
+
+  flushAll(): void {
+    if (!this.client) {
+      throw new Error("No redis connection");
+    }
+    this.client.flushall();
   }
 }
 
