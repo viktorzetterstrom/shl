@@ -15,9 +15,12 @@ spec:
         - name: shl-client
           image: viktorzetterstrom/shl-client
           resources:
-            limits:
+            requests:
               memory: "512Mi"
               cpu: "500m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
           ports:
             - containerPort: 3000
 ---

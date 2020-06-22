@@ -15,9 +15,12 @@ spec:
         - name: shl-api-redis
           image: redis
           resources:
-            limits:
+            requests:
               memory: "128Mi"
               cpu: "500m"
+            limits:
+              memory: "256Mi"
+              cpu: "1000m"
           ports:
             - containerPort: 6379
 ---

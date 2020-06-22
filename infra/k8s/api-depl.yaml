@@ -15,9 +15,12 @@ spec:
         - name: shl-api
           image: viktorzetterstrom/shl-api
           resources:
-            limits:
+            requests:
               memory: "128Mi"
               cpu: "500m"
+            limits:
+              memory: "256Mi"
+              cpu: "1000m"
           env:
             - name: REDIS_HOST
               value: shl-api-redis-srv
