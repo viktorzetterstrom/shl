@@ -24,7 +24,7 @@ const start = async () => {
   }
 
   await shlClient.connect();
-  if (shlClient.connected) {
+  if (!shlClient.connected) {
     throw new Error("SHL client could not connect to external API");
   }
 

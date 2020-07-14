@@ -8,10 +8,12 @@ import { GoalkeeperResponse } from "./responses/goalkeeper";
 export class ShlClient {
   constructor(private connection: ShlConnection) {}
 
-  public connected = this.connection.connected;
-
   async connect(): Promise<void> {
     await this.connection.connect();
+  }
+
+  get connected() {
+    return this.connection.connected;
   }
 
   season(year: number) {

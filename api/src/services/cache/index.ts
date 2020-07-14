@@ -2,7 +2,7 @@ import redis, { RedisClient } from "redis";
 
 class Cache {
   private client?: RedisClient;
-  private CACHE_LIFESPAN: number = 600;
+  private readonly CACHE_LIFESPAN: number = 600;
 
   public connected: boolean = false;
 
