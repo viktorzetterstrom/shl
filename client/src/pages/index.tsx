@@ -1,3 +1,5 @@
-export default function LandingPage() {
-  return <div>Index route</div>;
-}
+const LandingPage = () => {
+  return <div>Landingpage</div>;
+};
+
+export default LandingPage;

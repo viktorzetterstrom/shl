@@ -18,8 +18,7 @@ export function Layout(props: Props) {
           max-width: 900px;
           width: 100%;
           padding: 20px;
-          background-color: ${styles.colors.primaryLight};
-          box-shadow: ${styles.attributes.shadow};
+          background-color: grey;
         }
         @media (min-width: 900px) {
           .app-container {
