@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import morgan from "morgan";
 import { gamesRouter } from "./routes/games";
 import { goaliesRouter } from "./routes/goalies";
 import { skatersRouter } from "./routes/skaters";
@@ -9,6 +10,7 @@ import { routeCacher } from "./middlewares/route-cacher";
 
 const app = express();
 
+app.use(morgan("combined"));
 app.use(cors());
 app.use(routeCacher);
 
