@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { useRouter } from "next/dist/client/router";
 
 export function Header() {
+  const router = useRouter();
+
+  const setHeaderLinkClassName = (route: string): string =>
+    router.pathname === route ? "header-link active" : "header-link";
+
   return (
     <>
       <div className="header">
@@ -14,47 +20,48 @@ export function Header() {
         </div>
         <div className="header-links">
           <Link href="/standings">
-            <a className="header-link">Standings</a>
+            <a className={setHeaderLinkClassName("/standings")}>Standings</a>
           </Link>
           <Link href="/games">
-            <a className="header-link">Games</a>
+            <a className={setHeaderLinkClassName("/games")}>Games</a>
           </Link>
           <Link href="/goalies">
-            <a className="header-link">Goalies</a>
+            <a className={setHeaderLinkClassName("/goalies")}>Goalies</a>
           </Link>
           <Link href="/skaters">
-            <a className="header-link">Skaters</a>
+            <a className={setHeaderLinkClassName("/skaters")}>Skaters</a>
           </Link>
         </div>
       </div>
       <style jsx>{`
         .header {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: flex-end;
-          justify-content: space-between;
           padding-bottom: 20px;
+          border-bottom: 1px solid black;
+        }
+        .heading-container {
+          text-align: center;
+        }
+        .heading {
+          margin: 0;
+          padding: 0;
         }
         .header-link + .header-link {
-          margin-left: 20px;
+          margin-left: 5px;
         }
         .header-links {
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-around;
           padding-top: 20px;
+          max-width: 600px;
         }
         .header-link {
           margin-bottom: 5px;
           text-decoration: none;
         }
+        .header-link.active,
         .header-link:hover {
           text-decoration: underline;
-        }
-        .heading-container {
-          margin-right: 10px;
-        }
-        .heading {
-          font-size: 24px;
-          margin: 0;
-          padding: 0;
         }
         .usp-text {
           padding: 0;

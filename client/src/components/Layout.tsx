@@ -16,17 +16,12 @@ export function Layout(props: Props) {
           margin: 0 auto;
           max-width: 900px;
           width: 100%;
-          padding: 20px 5px 5px;
+          padding-top: 10px;
           background-color: #cecece;
-        }
-        @media (min-width: 500px) {
-          .app-container {
-            padding: 20px;
-          }
         }
         @media (min-width: 900px) {
           .app-container {
-            border-radius: 5px;
+            padding-top: 20px;
             margin-top: 20px;
           }
         }
@@ -51,7 +46,9 @@ export function Layout(props: Props) {
           }
 
           h1 {
+            font-size: 24px;
             font-family: Raleway;
+            color: #151515;
             font-weight: 400;
           }
 
@@ -59,7 +56,9 @@ export function Layout(props: Props) {
           a,
           button,
           input {
+            font-size: 16px;
             font-family: "Source Code Pro";
+            color: #151515;
           }
         `}
       </style>
