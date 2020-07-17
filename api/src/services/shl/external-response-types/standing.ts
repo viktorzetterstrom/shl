@@ -1,4 +1,4 @@
-import { TeamNames } from "../response-formatters/team-names";
+import { TeamNames } from "./team-names";
 
 export interface StandingsResponse {
   GP: number;

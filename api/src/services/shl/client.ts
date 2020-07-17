@@ -1,9 +1,8 @@
 import { ShlConnection } from "./connection";
-import { formatWinstreaks } from "./response-formatters/winstreaks";
-import { GameResponse } from "./responses/game";
-import { StandingsResponse } from "./responses/standing";
-import { SkaterResponse } from "./responses/skater";
-import { GoalkeeperResponse } from "./responses/goalkeeper";
+import { GameResponse } from "./external-response-types/game";
+import { StandingsResponse } from "./external-response-types/standing";
+import { SkaterResponse } from "./external-response-types/skater";
+import { GoalkeeperResponse } from "./external-response-types/goalkeeper";
 
 export class ShlClient {
   constructor(private connection: ShlConnection) {}
@@ -37,10 +36,6 @@ export class ShlClient {
           standings: async () =>
             this.connection.get<StandingsResponse[]>(
               `${base}/statistics/teams/standings`
-            ),
-          winstreaks: async () =>
-            formatWinstreaks(
-              await this.connection.get<GameResponse[]>(`${base}/games`)
             ),
         },
       },

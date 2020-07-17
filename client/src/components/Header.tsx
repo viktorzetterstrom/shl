@@ -1,33 +1,29 @@
 import Link from "next/link";
-import { styles } from "../styles";
 
 export function Header() {
   return (
     <>
       <div className="header">
-        <div>
-          <h1 className="header-heading">
+        <div className="heading-container">
+          <h1 className="heading">
             SHL&nbsp;.&nbsp;ZETTERSTROM&nbsp;.&nbsp;DEV
           </h1>
           <p className="usp-text">
             Swedish&nbsp;Hockey&nbsp;League&nbsp;Statistics
           </p>
         </div>
-        <div>
-          <Link href="/">
+        <div className="header-links">
+          <Link href="/standings">
             <a className="header-link">Standings</a>
           </Link>
-          <Link href="/about">
+          <Link href="/games">
             <a className="header-link">Games</a>
           </Link>
-          <Link href="/about">
+          <Link href="/goalies">
             <a className="header-link">Goalies</a>
           </Link>
-          <Link href="/about">
+          <Link href="/skaters">
             <a className="header-link">Skaters</a>
-          </Link>
-          <Link href="/about">
-            <a className="header-link">Winstreaks</a>
           </Link>
         </div>
       </div>
@@ -35,30 +31,35 @@ export function Header() {
         .header {
           display: flex;
           flex-wrap: wrap;
-          align-items: baseline;
+          align-items: flex-end;
           justify-content: space-between;
-          margin-bottom: ${styles.attributes.spacing()};
+          padding-bottom: 20px;
         }
         .header-link + .header-link {
-          margin-left: ${styles.attributes.spacing(2)};
+          margin-left: 20px;
+        }
+        .header-links {
+          padding-top: 20px;
         }
         .header-link {
+          margin-bottom: 5px;
           text-decoration: none;
-          color: ${styles.colors.text};
         }
         .header-link:hover {
           text-decoration: underline;
         }
-        .header-heading {
+        .heading-container {
+          margin-right: 10px;
+        }
+        .heading {
+          font-size: 24px;
           margin: 0;
           padding: 0;
         }
         .usp-text {
-          font-size: ${styles.attributes.fontSizeSmall};
           padding: 0;
           margin: 0;
           margin-top: 0;
-          padding-bottom: ${styles.attributes.spacing()};
         }
       `}</style>
     </>

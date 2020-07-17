@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
-import { Header } from "./Header";
-import { Head } from "./Head";
-import { styles } from "../styles";
+import { Header } from "./header";
+import { Head } from "./head";
 
 type Props = { children: ReactNode };
 export function Layout(props: Props) {
@@ -17,11 +16,17 @@ export function Layout(props: Props) {
           margin: 0 auto;
           max-width: 900px;
           width: 100%;
-          padding: 20px;
-          background-color: grey;
+          padding: 20px 5px 5px;
+          background-color: #cecece;
+        }
+        @media (min-width: 500px) {
+          .app-container {
+            padding: 20px;
+          }
         }
         @media (min-width: 900px) {
           .app-container {
+            border-radius: 5px;
             margin-top: 20px;
           }
         }
@@ -40,16 +45,12 @@ export function Layout(props: Props) {
 
           body {
             margin: 0;
-            color: ${styles.colors.text};
-            background-color: ${styles.colors.background};
             font-family: "Source Code Pro", monospace;
-            font-size: ${styles.attributes.fontSize};
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
           }
 
           h1 {
-            font-size: ${styles.attributes.fontSizeBig};
             font-family: Raleway;
             font-weight: 400;
           }
